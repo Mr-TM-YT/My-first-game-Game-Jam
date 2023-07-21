@@ -1,2 +1,2 @@
 # first-game-jam-game
-A game for the first game jam game jam ( yeah this is missed up )
+A game for the my first game Game Jam ( yeah this is missed up )
