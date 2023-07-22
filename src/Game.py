@@ -2,24 +2,25 @@
 import pygame as pg
 from sys import exit
 from Settings import *
+from Enemy import Enemy
 
 
 class Game:
     #  init method
     def __init__(self) -> None:
-        self.Init()
+        self.init()
         # Initial x position of the square
         self.square_x = WINDOW_SIZE["x"] // 2
         # Initial y position of the square
         self.square_y = WINDOW_SIZE["y"] // 2
 
     # checks if the game is running
-    def IsRunning(self) -> bool:
+    def is_running(self) -> bool:
         return self.running
 
     # idk why another init 🤔
     # Because I'm a C++ dev :)
-    def Init(self) -> None:
+    def init(self) -> None:
         pg.init()
         self.display = pg.display.set_mode(
             (WINDOW_SIZE["x"], WINDOW_SIZE["y"]))
@@ -27,21 +28,24 @@ class Game:
         self.clock = pg.time.Clock()
         pg.display.set_caption("The (Team Name) is here baby")
         self.keys = pg.key.get_pressed()
+        self.enemy = Enemy(self.display)
 
     # update the game
-    def Update(self) -> None:
-        self.CheckEvents()
+    def update(self) -> None:
+        self.check_events()
+        self.enemy.update()
 
     # draw stff on the screen
-    def Render(self) -> None:
+    def render(self) -> None:
         self.display.fill((0, 0, 255))
         pg.draw.rect(self.display, square_color, (self.square_x,
                                                   self.square_y, square_size, square_size))
+        self.enemy.render()
         pg.display.flip()
         self.clock.tick(60)
 
     # check for events
-    def CheckEvents(self) -> None:
+    def check_events(self) -> None:
         for e in pg.event.get():
             if e.type == pg.QUIT:
                 self.running = False
@@ -64,6 +68,6 @@ class Game:
             self.square_y += movement_speed
     # close the game and cleanup
 
-    def Close(self):
+    def close(self):
         pg.quit()
         exit()
