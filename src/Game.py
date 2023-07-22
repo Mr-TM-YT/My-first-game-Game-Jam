@@ -3,18 +3,8 @@ import pygame as pg
 from sys import exit
 from Settings import *
 
-# initialize pygame
-pg.init()
-
 
 class Game:
-    #  necessary variables
-    running = True
-    display = None
-    pg.display.set_caption("The (Team Name) is here baby")
-    clock = pg.time.Clock()
-    keys = pg.key.get_pressed()
-
     #  init method
     def __init__(self) -> None:
         self.Init()
@@ -28,9 +18,15 @@ class Game:
         return self.running
 
     # idk why another init 🤔
+    # Because I'm a C++ dev :)
     def Init(self) -> None:
+        pg.init()
         self.display = pg.display.set_mode(
             (WINDOW_SIZE["x"], WINDOW_SIZE["y"]))
+        self.running = True
+        self.clock = pg.time.Clock()
+        pg.display.set_caption("The (Team Name) is here baby")
+        self.keys = pg.key.get_pressed()
 
     # update the game
     def Update(self) -> None:
@@ -54,16 +50,20 @@ class Game:
         self.keys = pg.key.get_pressed()
 
         # Now use self.square_x and self.square_y to update the position
-        if self.keys[pg.K_LEFT] or self.keys[pg.K_a]:
+        # The other condition is for clamping the square inside the window
+        if (self.keys[pg.K_LEFT] or self.keys[pg.K_a]) and self.square_x >= 0:
             self.square_x -= movement_speed
-        if self.keys[pg.K_RIGHT] or self.keys[pg.K_d]:
-            self.square_x += movement_speed
-        if self.keys[pg.K_UP] or self.keys[pg.K_w]:
-            self.square_y -= movement_speed
-        if self.keys[pg.K_DOWN] or self.keys[pg.K_s]:
-            self.square_y += movement_speed
 
+        if (self.keys[pg.K_RIGHT] or self.keys[pg.K_d]) and self.square_x <= WINDOW_SIZE["x"] - square_size:
+            self.square_x += movement_speed
+
+        if (self.keys[pg.K_UP] or self.keys[pg.K_w]) and self.square_y >= 0:
+            self.square_y -= movement_speed
+
+        if (self.keys[pg.K_DOWN] or self.keys[pg.K_s]) and self.square_y <= WINDOW_SIZE["y"] - square_size:
+            self.square_y += movement_speed
     # close the game and cleanup
+
     def Close(self):
         pg.quit()
         exit()
