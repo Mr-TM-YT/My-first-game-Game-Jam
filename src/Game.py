@@ -27,7 +27,7 @@ class Game:
 
     def render(self):
         self.display.fill((0, 0, 255))
-        self.display.blit(self.player.image, (self.player.x, self.player.y))
+        self.player.render(self.display)
         pg.display.flip()
         self.clock.tick(60)
 

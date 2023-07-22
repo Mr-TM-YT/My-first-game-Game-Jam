@@ -65,3 +65,6 @@ class Player(Entity):
 
         if not self.is_jumping and self.y == WINDOW_SIZE["y"] - square_size:
             self.is_on_ground = True
+
+    def render(self, display):
+        display.blit(self.image, (self.x, self.y))
