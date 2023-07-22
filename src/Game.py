@@ -8,7 +8,6 @@ from Enemy import Enemy
 class Game:
     #  init method
     def __init__(self) -> None:
-        pg.init()
         self.display = pg.display.set_mode(
             (WINDOW_SIZE["x"], WINDOW_SIZE["y"]))
         self.running = True

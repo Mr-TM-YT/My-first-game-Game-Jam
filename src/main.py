@@ -1,5 +1,8 @@
 # necessary imports
 from Game import Game
+import pygame as pg
+
+pg.init()
 
 # create an instance of the game class
 game = Game()
