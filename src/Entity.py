@@ -2,17 +2,23 @@
 import pygame as pg
 
 
+# NOTE: This is an abstract class, don't make an instance of it
 class Entity(pg.sprite.Sprite):
     def __init__(self, x=0, y=0, speed=0) -> None:
+        # We need to init pg.sprite.Sprite
         super().__init__()
+        # Some basic vars
         self.x = x
         self.y = y
-        self.speed = speed
-        self.rect = None
-        self.image = None
+        self.vel = 0  # This is optional
+        self.speed = speed  # Most entities will need a speed
+        self.rect = None  # For collision
+        self.image = None  # what will be shown on the screen
 
+    # Called 60 times a second
     def Update():
         pass
 
+    # Will draw the Entity
     def Render():
         pass
