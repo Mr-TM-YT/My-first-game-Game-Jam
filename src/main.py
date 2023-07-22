@@ -1,16 +1,16 @@
-# necessary imports
 from Game import Game
 
-# create an instance of the game class 
-game = Game()
 
-# main method to run the game
+# This is the main function to run the game
 def main():
-    while game.IsRunning():
-        game.Update()
-        game.Render()
-    game.Close()
+    game = Game()
 
-# only execute the main func if this file is being run
+    while game.is_running():
+        game.update()
+        game.render()
+
+    game.close()
+
+
 if __name__ == "__main__":
     main()

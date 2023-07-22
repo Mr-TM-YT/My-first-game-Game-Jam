@@ -1,24 +1,13 @@
-# This is a bass class for all the Entities in the game [Mr.TM]
 import pygame as pg
 
 
-# NOTE: This is an abstract class, don't make an instance of it
+# This is the base class for all entities in the game
 class Entity(pg.sprite.Sprite):
-    def __init__(self, x=0, y=0, speed=0) -> None:
-        # We need to init pg.sprite.Sprite
+    def __init__(self):
         super().__init__()
-        # Some basic vars
-        self.x = x
-        self.y = y
-        self.vel = 0  # This is optional
-        self.speed = speed  # Most entities will need a speed
-        self.rect = None  # For collision
-        self.image = None  # what will be shown on the screen
-
-    # Called 60 times a second
-    def Update():
-        pass
-
-    # Will draw the Entity
-    def Render():
-        pass
+        self.x = 0
+        self.y = 0
+        self.vel = 0
+        self.speed = 0
+        self.rect = None
+        self.image = None
