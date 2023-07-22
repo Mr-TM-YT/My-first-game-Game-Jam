@@ -8,19 +8,6 @@ from Enemy import Enemy
 class Game:
     #  init method
     def __init__(self) -> None:
-        self.init()
-        # Initial x position of the square
-        self.square_x = WINDOW_SIZE["x"] // 2
-        # Initial y position of the square
-        self.square_y = WINDOW_SIZE["y"] // 2
-
-    # checks if the game is running
-    def is_running(self) -> bool:
-        return self.running
-
-    # idk why another init 🤔
-    # Because I'm a C++ dev :)
-    def init(self) -> None:
         pg.init()
         self.display = pg.display.set_mode(
             (WINDOW_SIZE["x"], WINDOW_SIZE["y"]))
@@ -29,6 +16,14 @@ class Game:
         pg.display.set_caption("The (Team Name) is here baby")
         self.keys = pg.key.get_pressed()
         self.enemy = Enemy(self.display)
+        # Initial x position of the square
+        self.square_x = WINDOW_SIZE["x"] // 2
+        # Initial y position of the square
+        self.square_y = WINDOW_SIZE["y"] // 2
+
+    # checks if the game is running
+    def is_running(self) -> bool:
+        return self.running
 
     # update the game
     def update(self) -> None:
